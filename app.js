@@ -1858,6 +1858,23 @@ async function renderDrugContent() {
         return;
     }
     
+    // Prevent 0x0 size collapse by adjusting wrapper layout for images vs PDF
+    if (isMapped) {
+        wrapper.style.position = 'absolute';
+        wrapper.style.display = 'block';
+        wrapper.style.width = '';
+        wrapper.style.height = '';
+        wrapper.style.justifyContent = '';
+        wrapper.style.alignItems = '';
+    } else {
+        wrapper.style.position = 'relative';
+        wrapper.style.display = 'flex';
+        wrapper.style.justifyContent = 'center';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.width = '100%';
+        wrapper.style.height = '100%';
+    }
+    
     // 3. Render PDF page (if mapped)
     if (isMapped) {
         pdfNav.style.display = 'flex';
@@ -1882,12 +1899,19 @@ async function renderDrugContent() {
         img.id = 'drugImage'; // keep legacy id fallback
         img.src = activeDrug.localImage;
         img.style.maxWidth = '100%';
+        img.style.maxHeight = '90vh';
         img.style.height = 'auto';
         img.style.borderRadius = 'var(--radius-sm)';
         img.style.boxShadow = 'var(--shadow-sm)';
+        img.style.objectFit = 'contain';
         
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'viewer-item-wrapper local-img-wrapper';
+        itemWrapper.style.display = 'flex';
+        itemWrapper.style.justifyContent = 'center';
+        itemWrapper.style.alignItems = 'center';
+        itemWrapper.style.width = '100%';
+        itemWrapper.style.height = '100%';
         itemWrapper.appendChild(img);
         wrapper.appendChild(itemWrapper);
     }
@@ -1901,14 +1925,20 @@ async function renderDrugContent() {
             const imgWrapper = document.createElement('div');
             imgWrapper.className = 'viewer-item-wrapper custom-img-wrapper';
             imgWrapper.style.position = 'relative';
-            imgWrapper.style.display = 'inline-block';
+            imgWrapper.style.display = 'flex';
+            imgWrapper.style.justifyContent = 'center';
+            imgWrapper.style.alignItems = 'center';
+            imgWrapper.style.width = '100%';
+            imgWrapper.style.height = '100%';
             
             const img = document.createElement('img');
             img.src = imgSrc;
             img.style.maxWidth = '100%';
+            img.style.maxHeight = '90vh';
             img.style.height = 'auto';
             img.style.borderRadius = 'var(--radius-sm)';
             img.style.boxShadow = 'var(--shadow-sm)';
+            img.style.objectFit = 'contain';
             
             imgWrapper.appendChild(img);
             
