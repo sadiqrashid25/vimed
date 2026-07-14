@@ -781,14 +781,20 @@ function openDrugModal(drug, pageNum) {
 }
 
 function closeModal() {
-    document.getElementById('drugModal').classList.remove('open');
+    const modal = document.getElementById('drugModal');
+    if (modal) modal.classList.remove('open');
     document.body.style.overflow = '';
     activeDrug = null;
     
-    // Clear displays
-    document.getElementById('pdfCanvas').style.display = 'none';
-    document.getElementById('drugImage').style.display = 'none';
-    document.getElementById('viewerEmptyState').style.display = 'none';
+    // Clear displays safely
+    const canvas = document.getElementById('pdfCanvas');
+    if (canvas) canvas.style.display = 'none';
+    
+    const img = document.getElementById('drugImage');
+    if (img) img.style.display = 'none';
+    
+    const emptyState = document.getElementById('viewerEmptyState');
+    if (emptyState) emptyState.style.display = 'none';
     
     // Cancel any ongoing render task to prevent performance issues
     if (currentRenderTask) {
@@ -1898,6 +1904,7 @@ async function renderDrugContent() {
         const img = document.createElement('img');
         img.id = 'drugImage'; // keep legacy id fallback
         img.src = activeDrug.localImage;
+        img.style.display = 'block'; // Override style.css display: none
         img.style.maxWidth = '100%';
         img.style.maxHeight = '90vh';
         img.style.height = 'auto';
