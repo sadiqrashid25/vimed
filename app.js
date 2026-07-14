@@ -1873,7 +1873,7 @@ async function renderDrugContent() {
         wrapper.style.justifyContent = '';
         wrapper.style.alignItems = '';
     } else {
-        wrapper.style.position = 'relative';
+        wrapper.style.position = 'absolute'; // Use absolute to allow height 100% resolution inside flex parent
         wrapper.style.display = 'flex';
         wrapper.style.justifyContent = 'center';
         wrapper.style.alignItems = 'center';
