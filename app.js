@@ -1929,16 +1929,30 @@ async function renderDrugContent() {
     
     // 4. Render Local Image
     if (hasLocalImg) {
+        // Show loading spinner while browser downloads the image file
+        loader.querySelector('#loaderText').textContent = "Memuatkan gambar...";
+        loader.style.display = 'flex';
+        
         const img = document.createElement('img');
         img.id = 'drugImage'; // keep legacy id fallback
         img.src = activeDrug.localImage;
-        img.style.display = 'block'; // Override style.css display: none
+        img.style.display = 'none'; // Keep hidden until fully loaded to prevent flash
         img.style.maxWidth = '100%';
         img.style.maxHeight = '90vh';
         img.style.height = 'auto';
         img.style.borderRadius = 'var(--radius-sm)';
         img.style.boxShadow = 'var(--shadow-sm)';
         img.style.objectFit = 'contain';
+        
+        img.onload = () => {
+            img.style.display = 'block'; // Show image
+            loader.style.display = 'none'; // Hide spinner
+        };
+        
+        img.onerror = () => {
+            loader.style.display = 'none'; // Hide spinner
+            showToast("Gagal memuatkan gambar visual ubat.", "error");
+        };
         
         const itemWrapper = document.createElement('div');
         itemWrapper.className = 'viewer-item-wrapper local-img-wrapper';
