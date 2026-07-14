@@ -1,0 +1,12 @@
+# Ignore local portable Git installation
+PortableGit/
+
+# Ignore heavy PDF documents
+*.pdf
+
+# Ignore extracted PDF assets
+extracted_docx/
+extracted_images/
+
+# Ignore temporary installation scripts
+download_git.ps1

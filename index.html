@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIMED - Katalog Visual Ubat Pintar</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Header Section -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="icon-wrapper" style="background: none; padding: 0; box-shadow: none;">
+                    <img src="images/vimed_logo.png" alt="VIMED Logo" style="width: 42px; height: 42px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid var(--border-color);">
+                </div>
+                <div>
+                    <h1>VIMED</h1>
+                    <p class="tagline">Katalog Visual Ubat Pintar</p>
+                </div>
+            </div>
+            
+            <!-- User Status Widget (Login/Logout) -->
+            <div class="user-status-widget" id="userStatusWidget">
+                <!-- Guest Mode -->
+                <div id="guestUserArea">
+                    <span class="user-badge guest"><i class="fa-solid fa-user-secret"></i> Guest (Lihat Sahaja)</span>
+                    <button class="btn btn-sm btn-outline btn-full" id="openLoginModalBtn" style="margin-top: 10px;">
+                        <i class="fa-solid fa-right-to-bracket"></i> Log Masuk Admin
+                    </button>
+                </div>
+                <!-- Logged In Mode -->
+                <div id="adminUserArea" style="display: none;">
+                    <span class="user-badge admin"><i class="fa-solid fa-user-shield"></i> Admin: <span id="adminUsernameVal"></span></span>
+                    <button class="btn btn-sm btn-secondary btn-full" id="logoutBtn" style="margin-top: 10px;">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log Keluar
+                    </button>
+                    <button class="btn btn-sm btn-primary btn-full" id="openAddDrugModalBtn" style="margin-top: 10px; background: linear-gradient(135deg, var(--success), #059669); border-color: transparent;">
+                        <i class="fa-solid fa-plus-circle"></i> Tambah Ubat Baharu
+                    </button>
+                </div>
+            </div>
+
+            <!-- PDF Status Widget -->
+            <div class="pdf-status-widget" id="pdfStatusWidget">
+                <div class="status-indicator error" id="pdfStatusIndicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">PDF Belum Dimuat Naik</span>
+                </div>
+                <p class="status-desc" id="pdfStatusDesc">Sila muat naik 'Catalogue with Picture.pdf' untuk visual.</p>
+                <div class="btn-group-status">
+                    <button class="btn btn-sm btn-outline" id="loadPdfBtn">
+                        <i class="fa-solid fa-file-pdf"></i> Muat Naik PDF
+                    </button>
+                    <button class="btn btn-sm btn-icon" id="clearPdfBtn" title="Padam PDF dari storan" style="display: none;">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+                <button class="btn btn-sm btn-primary" id="exportAllImagesBtn" style="display: none; margin-top: 8px; width: 100%; justify-content: center; gap: 6px;">
+                    <i class="fa-solid fa-file-export"></i> Ekstrak Semua Halaman ke Desktop
+                </button>
+            </div>
+
+            <!-- Quick Action & Stats -->
+            <div class="stats-panel" id="statsPanel" style="display: none;">
+                <div class="stat-item">
+                    <span class="stat-val" id="totalPagesVal">0</span>
+                    <span class="stat-lbl">Halaman PDF</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="mappedDrugsVal">0/14</span>
+                    <span class="stat-lbl">Ubat Dipetakan</span>
+                </div>
+            </div>
+            
+            <!-- Print All Catalog Button (Always visible to guest & admin) -->
+            <button class="btn btn-primary btn-full" id="printAllCatalogBtn" style="margin-bottom: 10px; background: linear-gradient(135deg, var(--primary), #1d4ed8); border-color: transparent; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fa-solid fa-file-pdf"></i> Cetak Semua Bergambar
+            </button>
+            
+            <!-- Settings & Mapping Toggle -->
+            <button class="btn btn-secondary btn-full" id="toggleSettingsBtn">
+                <i class="fa-solid fa-sliders"></i> Pengurusan Pemetaan Halaman
+            </button>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <!-- Welcome Guest Banner (Visible only to guests) -->
+            <div class="guest-welcome-banner" id="guestWelcomeBanner" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+                <!-- Animated Background Blob -->
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 70%); pointer-events: none;"></div>
+                
+                <div class="banner-icon-wrapper" style="background: linear-gradient(135deg, var(--primary), #1d4ed8); width: 60px; height: 60px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 8px 16px rgba(59, 130, 246, 0.25);">
+                    <i class="fa-solid fa-graduation-cap" style="font-size: 28px; color: #ffffff;"></i>
+                </div>
+                <div style="flex: 1; text-align: left;">
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px 0; letter-spacing: -0.02em;">Portal Carian Katalog Ubat Bergambar (VIMED)</h2>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.5; max-width: 650px;">Anda sedang menggunakan portal rujukan sebagai pelawat (**Guest**). Sistem ini memudahkan ahli farmasi dan kakitangan perubatan untuk menyemak gambar visual kotak ubat, bentuk blister, dan biji ubat bagi melancarkan proses dispensing ubat harian.</p>
+                </div>
+            </div>
+            <!-- PDF Drag & Drop Zone (Visible when no PDF is cached) -->
+            <section class="upload-zone" id="uploadZone">
+                <input type="file" id="pdfFileInput" accept="application/pdf" style="display: none;">
+                <div class="upload-card" id="dropArea">
+                    <div class="upload-icon">
+                        <i class="fa-solid fa-file-import"></i>
+                    </div>
+                    <h3>Seret & Lepas PDF Rujukan Di Sini</h3>
+                    <p>atau klik untuk memilih fail dari peranti anda</p>
+                    <div class="file-recommendation">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Disyorkan: Gunakan fail <strong>Catalogue with Picture.pdf</strong> (~39 MB)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search and Filter Bar -->
+            <section class="control-section">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchBar" placeholder="Cari nama ubat, bahan aktif, dos, atau halaman..." autocomplete="off">
+                    <button class="clear-search" id="clearSearchBtn" style="display: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">Semua</button>
+                    <button class="filter-tab" data-filter="mapped">Mempunyai Visual</button>
+                    <button class="filter-tab" data-filter="unmapped">Belum Dipetakan</button>
+                </div>
+            </section>
+
+            <!-- Drug List Grid -->
+            <section class="catalog-section">
+                <div class="catalog-header">
+                    <h2>Senarai Katalog Ubat <span class="badge" id="drugCountBadge">14</span></h2>
+                    <span class="hint-text"><i class="fa-solid fa-mouse-pointer"></i> Klik pada kad ubat untuk melihat gambar visual</span>
+                </div>
+                
+                <div class="drug-grid" id="drugGrid">
+                    <!-- Dynamic drug cards loaded by JS -->
+                </div>
+                
+                <!-- No Results State -->
+                <div class="no-results" id="noResultsState" style="display: none;">
+                    <i class="fa-solid fa-capsules"></i>
+                    <h3>Tiada Ubat Dijumpai</h3>
+                    <p>Cuba kata kunci carian yang lain.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mapping / Settings Sidebar (Drawer Panel) -->
+    <div class="drawer" id="settingsDrawer">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-gears"></i> Urus Pemetaan Halaman PDF</h3>
+                <button class="btn-close-drawer" id="closeDrawerBtn">&times;</button>
+            </div>
+            <p class="drawer-desc">Suaikan nombor halaman PDF bagi setiap ubat berdasarkan fail PDF anda.</p>
+            
+            <div class="mapping-actions">
+                <button class="btn btn-sm btn-primary" id="autoIndexBtn" disabled>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Indeks Automatik Teks PDF
+                </button>
+                <button class="btn btn-sm btn-secondary" id="resetMappingBtn">
+                    <i class="fa-solid fa-rotate-left"></i> Set Semula Default
+                </button>
+            </div>
+            
+            <!-- Global Offset Input -->
+            <div class="global-offset-setting" style="margin-bottom: 20px; padding: 12px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                <div style="flex: 1; text-align: left;">
+                    <label style="font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-right-left"></i> Offset Muka Surat PDF
+                    </label>
+                    <span style="font-size: 11px; color: var(--text-secondary); display: block; margin-top: 2px;">Jumlah lari halaman (contoh: +2 jika ada 2 muka surat cover).</span>
+                </div>
+                <input type="number" id="globalPdfOffset" class="mapping-page-input" value="0" style="width: 70px;">
+            </div>
+            
+            <div class="mapping-list" id="mappingList">
+                <!-- Mappings will be populated here -->
+            </div>
+            
+            <!-- Log Aktiviti Section -->
+            <div class="logs-section" id="logsSection" style="display: none; border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 10px; flex-shrink: 0; max-height: 200px; display: flex; flex-direction: column;">
+                <h4 style="font-size: 13px; margin-bottom: 8px; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-history"></i> Log Aktiviti Pengguna
+                </h4>
+                <div class="logs-container" id="logsContainer" style="flex: 1; overflow-y: auto; font-size: 11px; color: var(--text-secondary); background: var(--bg-main); padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 6px;">
+                    <!-- Logs loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Backup & Sync Section (Export/Import) -->
+            <div class="backup-section" style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 15px; margin-bottom: 10px;">
+                <h4 style="font-size: 13px; margin-bottom: 8px; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Sandaran & Pindahan Data (Backup/Sync)
+                </h4>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.4; text-align: left;">Pindahkan data ubat, pemetaan, dan gambar yang telah anda sunting pada PC ini ke PC yang lain secara manual.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button class="btn btn-sm btn-outline" id="exportDataBtn" style="justify-content: center; gap: 6px; font-size: 11px; display: flex; align-items: center; height: 32px;">
+                        <i class="fa-solid fa-download"></i> Eksport Data
+                    </button>
+                    <button class="btn btn-sm btn-outline" id="importDataBtn" style="justify-content: center; gap: 6px; font-size: 11px; display: flex; align-items: center; height: 32px;">
+                        <i class="fa-solid fa-upload"></i> Import Data
+                    </button>
+                    <input type="file" id="importDataFileInput" accept=".json" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Supabase Cloud Sync Section -->
+            <div class="supabase-section" style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 15px; margin-bottom: 10px; text-align: left;">
+                <h4 style="font-size: 13px; margin-bottom: 8px; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-cloud"></i> Pangkalan Data Awan (Supabase Sync)
+                </h4>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.4;">Hubungkan ke database Supabase percuma untuk penyelarasan langsung secara automatik merentasi semua PC.</p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div>
+                        <label style="font-size: 10px; color: var(--text-secondary); display: block; margin-bottom: 2px;">Supabase URL</label>
+                        <input type="text" id="supabaseUrlInput" style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); padding: 6px 10px; font-size: 11px; width: 100%;" placeholder="https://xxx.supabase.co">
+                    </div>
+                    <div>
+                        <label style="font-size: 10px; color: var(--text-secondary); display: block; margin-bottom: 2px;">Supabase Anon Key</label>
+                        <input type="password" id="supabaseKeyInput" style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); padding: 6px 10px; font-size: 11px; width: 100%;" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                    </div>
+                    <button class="btn btn-sm btn-primary" id="saveSupabaseConfigBtn" style="margin-top: 4px; justify-content: center; gap: 6px; font-size: 11px; display: flex; align-items: center; height: 32px;">
+                        <i class="fa-solid fa-link"></i> Sambung & Selaras
+                    </button>
+                </div>
+            </div>
+
+            <div class="drawer-footer" style="margin-top: 10px;">
+                <button class="btn btn-primary btn-full" id="saveMappingBtn">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Pemetaan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive PDF Viewer Modal -->
+    <div class="modal" id="drugModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-wrapper">
+            <div class="modal-header">
+                <div class="modal-title-area">
+                    <span class="drug-badge" id="modalDrugDosage">Dosage</span>
+                    <h3 id="modalTitle">Nama Ubat</h3>
+                    <p class="modal-subtitle" id="modalGenericName">Nama Generik / Bahan Aktif</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button class="btn btn-sm btn-icon" id="modalEditDrugBtn" title="Edit Maklumat Ubat" style="display: none; height: 32px; width: 32px; padding: 0; align-items: center; justify-content: center; border-radius: var(--radius-sm); color: var(--primary); background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="btn btn-sm btn-icon" id="modalDeleteDrugBtn" title="Padam Ubat dari Katalog" style="display: none; height: 32px; width: 32px; padding: 0; align-items: center; justify-content: center; border-radius: var(--radius-sm);">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <button class="modal-close" id="closeModalBtn">&times;</button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Viewer Canvas/Image Toolbar -->
+                <div class="viewer-toolbar">
+                    <div class="tool-group">
+                        <button class="tool-btn" id="zoomOutBtn" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <span class="zoom-level" id="zoomLevelVal">100%</span>
+                        <button class="tool-btn" id="zoomInBtn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="tool-btn" id="zoomFitBtn" title="Fit to Screen"><i class="fa-solid fa-expand"></i></button>
+                        <button class="tool-btn" id="zoomResetBtn" title="Reset"><i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+                        <button class="btn btn-sm btn-outline" id="uploadImageBtn" title="Muat naik gambar JPG/PNG">
+                            <i class="fa-solid fa-camera"></i> Gambar JPG/PNG
+                        </button>
+                        <button class="btn btn-sm btn-icon" id="deleteImageBtn" title="Padam Gambar Tempatan" style="display: none;">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <button class="btn btn-sm btn-primary" id="modalPrintBtn" title="Cetak Hardcopy / Simpan ke PDF" style="background: linear-gradient(135deg, var(--primary), #1d4ed8); border-color: transparent; gap: 6px; display: flex; align-items: center; height: 32px; padding: 0 12px; font-size: 12px; color: #ffffff;">
+                            <i class="fa-solid fa-print"></i> Cetak / Ekstrak PDF
+                        </button>
+                    </div>
+                    
+                    <div class="tool-group pdf-nav" id="pdfNavControls">
+                        <button class="tool-btn" id="prevPageBtn" title="Halaman Sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span class="page-number">Hal. <span id="currentPageVal">1</span> / <span id="totalPageCountVal">1</span></span>
+                        <button class="tool-btn" id="nextPageBtn" title="Halaman Seterusnya"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- PDF Render / Image Container -->
+                <div class="viewer-container" id="viewerContainer">
+                    <div class="canvas-wrapper" id="canvasWrapper">
+                    </div>
+                    <!-- Loading Indicator within Canvas -->
+                    <div class="canvas-loader" id="canvasLoader" style="display: none;">
+                        <div class="spinner"></div>
+                        <p id="loaderText">Merender Halaman PDF...</p>
+                    </div>
+                    <!-- Empty state inside modal -->
+                    <div class="viewer-empty-state" id="viewerEmptyState" style="display: none; text-align: center; padding: 40px 20px; flex-direction: column; align-items: center; justify-content: center; gap: 15px; width: 100%; height: 100%;">
+                        <i class="fa-solid fa-image" style="font-size: 48px; color: var(--text-muted); margin-bottom: 5px;"></i>
+                        <h4>Tiada Gambar Visual Ditemui</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary); max-width: 350px; margin: 0 auto; line-height: 1.4;">Ubat ini belum dipetakan ke halaman PDF yang sah, dan tiada gambar foto tempatan dimuat naik.</p>
+                        <button class="btn btn-sm btn-primary" id="emptyStateUploadBtn"><i class="fa-solid fa-upload"></i> Muat Naik Gambar JPG/PNG</button>
+                    </div>
+                    <!-- Drag and drop image overlay -->
+                    <div class="drag-upload-overlay" id="dragUploadOverlay" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(11, 15, 25, 0.9); flex-direction: column; align-items: center; justify-content: center; gap: 15px; z-index: 20; pointer-events: none; border: 2px dashed var(--primary); border-radius: var(--radius-md);">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 48px; color: var(--primary);"></i>
+                        <h4 style="color: var(--text-primary);">Lepaskan Gambar di Sini</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary); max-width: 300px; text-align: center; line-height: 1.4;">Lepaskan fail gambar (PNG/JPG) untuk memuat naik ke ubat ini.</p>
+                    </div>
+                </div>
+                
+                <!-- Helpful visual guide -->
+                <div class="viewer-instruction">
+                    <i class="fa-solid fa-hand-pointer"></i> <span>Gunakan tetikus/sentuhan untuk <strong>menyeret (drag)</strong> dan <strong>mengezum (scroll wheel)</strong> gambar ubat.</span>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="modal-info-footer">
+                    <i class="fa-solid fa-circle-question"></i> Halaman rujukan ini memaparkan Kotak, Blister & Biji ubat.
+                </div>
+                <div id="modalLastUpdatedInfo" style="font-size: 11px; color: var(--text-muted); display: none; align-items: center; gap: 4px; margin-left: auto; margin-right: 15px;"></div>
+                <button class="btn btn-secondary" id="closeModalFooterBtn">TUTUP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-backdrop" id="loginModalBackdrop"></div>
+        <div class="modal-wrapper" style="max-width: 400px; padding: 25px; border-radius: var(--radius-md); background-color: var(--bg-surface);">
+            <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 18px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-user-shield" style="color: var(--primary);"></i> Log Masuk Admin
+                </h3>
+                <button class="modal-close" id="closeLoginModalBtn" style="background: none; border: none; font-size: 24px; color: var(--text-secondary); cursor: pointer;">&times;</button>
+            </div>
+            <form id="loginForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="usernameInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Nama / ID Pentadbir</label>
+                    <input type="text" id="usernameInput" class="mapping-page-input" placeholder="Masukkan nama (fkkg)" required style="width: 100%; text-align: left; padding: 10px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="passwordInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Kata Laluan</label>
+                    <input type="password" id="passwordInput" class="mapping-page-input" placeholder="Masukkan kata laluan (123)" required style="width: 100%; text-align: left; padding: 10px;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">
+                    <i class="fa-solid fa-right-to-bracket"></i> LOG MASUK
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Drug Modal -->
+    <div class="modal" id="addDrugModal">
+        <div class="modal-backdrop" id="addDrugModalBackdrop"></div>
+        <div class="modal-wrapper" style="max-width: 480px; padding: 25px; border-radius: var(--radius-md); background-color: var(--bg-surface);">
+            <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 18px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-plus-circle" style="color: var(--success);"></i> Tambah Ubat Baharu
+                </h3>
+                <button class="modal-close" id="closeAddDrugModalBtn" style="background: none; border: none; font-size: 24px; color: var(--text-secondary); cursor: pointer;">&times;</button>
+            </div>
+            <form id="addDrugForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugBrandInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Jenama Ubat (Brand)</label>
+                    <input type="text" id="drugBrandInput" class="mapping-page-input" placeholder="Masukkan jenama (contoh: Hovasc)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugNameInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Nama Ubat (Name)</label>
+                    <input type="text" id="drugNameInput" class="mapping-page-input" placeholder="Masukkan nama ubat (contoh: Amlodipine 5mg)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugGenericInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Bahan Aktif (Generic)</label>
+                    <input type="text" id="drugGenericInput" class="mapping-page-input" placeholder="Masukkan nama generik (contoh: Amlodipine Besylate)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugDosageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Dos (Dosage)</label>
+                    <input type="text" id="drugDosageInput" class="mapping-page-input" placeholder="Masukkan dos ubat (contoh: 5mg)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugPageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Muka Surat PDF (Page Number - Pilihan)</label>
+                    <input type="number" id="drugPageInput" class="mapping-page-input" placeholder="Contoh: 7 (Tinggalkan kosong jika tiada)" style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="drugImageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Fail Gambar Visual (Pilihan)</label>
+                    <input type="file" id="drugImageInput" accept="image/*" style="background: none; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); padding: 8px 12px; font-size: 13px; width: 100%;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px; background: linear-gradient(135deg, var(--success), #059669); border-color: transparent;">
+                    <i class="fa-solid fa-save"></i> SIMPAN UBAT BAHARU
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Drug Modal -->
+    <div class="modal" id="editDrugModal">
+        <div class="modal-backdrop" id="editDrugModalBackdrop"></div>
+        <div class="modal-wrapper" style="max-width: 480px; padding: 25px; border-radius: var(--radius-md); background-color: var(--bg-surface);">
+            <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 18px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-pen-to-square" style="color: var(--primary);"></i> Kemaskini Maklumat Ubat
+                </h3>
+                <button class="modal-close" id="closeEditDrugModalBtn" style="background: none; border: none; font-size: 24px; color: var(--text-secondary); cursor: pointer;">&times;</button>
+            </div>
+            <form id="editDrugForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <input type="hidden" id="editDrugIdInput">
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugBrandInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Jenama Ubat (Brand)</label>
+                    <input type="text" id="editDrugBrandInput" class="mapping-page-input" placeholder="Masukkan jenama (contoh: Hovasc)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugNameInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Nama Ubat (Name)</label>
+                    <input type="text" id="editDrugNameInput" class="mapping-page-input" placeholder="Masukkan nama ubat (contoh: Amlodipine 5mg)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugGenericInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Bahan Aktif (Generic)</label>
+                    <input type="text" id="editDrugGenericInput" class="mapping-page-input" placeholder="Masukkan nama generik (contoh: Amlodipine Besylate)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugDosageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Dos (Dosage)</label>
+                    <input type="text" id="editDrugDosageInput" class="mapping-page-input" placeholder="Masukkan dos ubat (contoh: 5mg)" required style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugPageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Muka Surat PDF (Page Number - Pilihan)</label>
+                    <input type="number" id="editDrugPageInput" class="mapping-page-input" placeholder="Contoh: 7 (Tinggalkan kosong jika tiada)" style="width: 100%; text-align: left; padding: 8px 12px; height: 40px;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+                    <label for="editDrugImageInput" style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Fail Gambar Visual Baharu (Pilihan - Gantikan yang lama)</label>
+                    <input type="file" id="editDrugImageInput" accept="image/*" style="background: none; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); padding: 8px 12px; font-size: 13px; width: 100%;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px; background: linear-gradient(135deg, var(--primary), #2563eb); border-color: transparent;">
+                    <i class="fa-solid fa-save"></i> SIMPAN PERUBAHAN
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- PDFJS Library CDN (Using modern version with local worker fallback configuration) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <!-- Supabase JS Client library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- App Script -->
+    <script src="app.js?v=2.0"></script>
+</body>
+</html>

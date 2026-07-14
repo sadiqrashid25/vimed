@@ -1,0 +1,234 @@
+﻿=== PARSED DOCX PARAGRAPHS & IMAGES ===
+Paragraph 1: 
+  Text: Oral Hypoglycemic Agent
+---------------------------------------
+Paragraph 2: 
+  Text: Biguanides
+---------------------------------------
+Paragraph 3: 
+  Text: Metformin 500mg Metformin XR 500mg
+  Images: media/image33.png, media/image45.png
+---------------------------------------
+Paragraph 4: 
+  Text: Oral Hypoglycemic Agent
+---------------------------------------
+Paragraph 5: 
+  Text: Sulfonylureas
+---------------------------------------
+Paragraph 6: 
+  Text: Gliclazide 80mg Gliclazide MR 30mg
+  Images: media/image43.png, media/image35.png
+---------------------------------------
+Paragraph 7: 
+  Text: Oral Hypoglycemic Agent Dipeptidyl Peptidase IV Inhibitor
+---------------------------------------
+Paragraph 8: 
+  Text: Vildagliptin 50mg
+  Images: media/image36.png
+---------------------------------------
+Paragraph 9: 
+  Text: Oral Hypoglycemic Agent Sodium-Glucose Cotransporter 2 (SGLT2) Inhibitor
+---------------------------------------
+Paragraph 10: 
+  Text: Empagliflozin 25mg
+  Images: media/image40.png
+---------------------------------------
+Paragraph 11: 
+  Text: Oral Antihypertensive Agent Diuretics
+---------------------------------------
+Paragraph 12: 
+  Text: Hydrochlorothiazide 25mg
+  Images: media/image46.png
+---------------------------------------
+Paragraph 13: 
+  Text: Oral Antihypertensive Agent Diuretics
+---------------------------------------
+Paragraph 14: 
+  Text: Frusemide 40mg Spironolactone 25mg
+  Images: media/image39.png, media/image34.png
+---------------------------------------
+Paragraph 15: 
+  Text: Oral Antihypertensive Agent Beta-Blockers (Non-selective)
+---------------------------------------
+Paragraph 16: 
+  Text: Labetalol 100mg Propranolol 40mg
+  Images: media/image42.png, media/image37.png
+---------------------------------------
+Paragraph 17: 
+  Text: Oral Antihypertensive Agent Beta-Blockers (Selective)
+---------------------------------------
+Paragraph 18: 
+  Text: Atenolol 100mg Metoprolol 100mg
+  Images: media/image41.png, media/image38.png
+---------------------------------------
+Paragraph 19: 
+  Text: Oral Antihypertensive Agent Beta-Blockers (Selective)
+---------------------------------------
+Paragraph 20: 
+  Text: Bisoprolol 5mg Bisoprolol 2.5mg
+  Images: media/image47.png, media/image44.png
+---------------------------------------
+Paragraph 21: 
+  Text: Oral Antihypertensive Agent Calcium Channel Blockers
+---------------------------------------
+Paragraph 22: 
+  Text: Amlodipine 5mg Amlodipine 10mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 23: 
+  Text: Oral Antihypertensive Agent Calcium Channel Blockers
+---------------------------------------
+Paragraph 24: 
+  Text: Felodipine 5mg Felodipine 10mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 25: 
+  Text: Oral Antihypertensive Agent Calcium Channel Blockers
+---------------------------------------
+Paragraph 26: 
+  Text: Nifedipine 10mg Diltiazem 30mg
+  Images: media/image6.png, media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 27: 
+  Text: Oral Antihypertensive Agent
+---------------------------------------
+Paragraph 28: 
+  Text: Angiotensin-Converting Enzyme (ACE) Inhibitor Perindopril 4mg Captopril 25mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 29: 
+  Text: Oral Antihypertensive Agent
+---------------------------------------
+Paragraph 30: 
+  Text: Angiotensin-Converting Enzyme (ACE) Inhibitor Enalapril 5mg Enalapril 10mg Enalapril 20mg
+  Images: media/image6.png, media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 31: 
+  Text: Oral Antihypertensive Agent
+---------------------------------------
+Paragraph 32: 
+  Text: Angiotensin-Converting Enzyme (ACE) Inhibitor + Diuretics
+---------------------------------------
+Paragraph 33: 
+  Text: Perindopril 4mg + Indapamide 1.25mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 34: 
+  Text: Oral Antihypertensive Agent
+---------------------------------------
+Paragraph 35: 
+  Text: Angiotensin II Receptor Blocker (ARB) Losartan 50mg Losartan 100mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 36: 
+  Text: Oral Antihypertensive Agent Angiotensin II Receptor Blocker (ARB) Telmisartan 80mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 37: 
+  Text: Oral Antihypertensive Agent Angiotensin II Receptor Blocker (ARB)
+---------------------------------------
+Paragraph 38: 
+  Text: Valsartan 80mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 39: 
+  Text: Oral Antihypertensive Agent Alpha 1 Blockers
+---------------------------------------
+Paragraph 40: 
+  Text: Prazosin 1mg Prazosin 2mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 41: 
+  Text: Oral Antihypertensive Agent Alpha 1 Blockers
+---------------------------------------
+Paragraph 42: 
+  Text: Prazosin 5mg
+---------------------------------------
+Paragraph 43: 
+  Text: Oral Antihypertensive Agent Alpha 2 Adrenergic Agonist
+---------------------------------------
+Paragraph 44: 
+  Text: Methyldopa 250mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 45: 
+  Text: Antiplatelet Agent
+---------------------------------------
+Paragraph 46: 
+  Text: Salicylate
+---------------------------------------
+Paragraph 47: 
+  Text: Acetylsalicylic 100mg + Glycine 45mg Acetylsalicylic Acid 300mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 48: 
+  Text: Antiplatelet Agent
+---------------------------------------
+Paragraph 49: 
+  Text: Thienopyridine
+---------------------------------------
+Paragraph 50: 
+  Text: Ticlodipine 250mg Clopidogrel 75mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 51: 
+  Text: Antilipemic Agent
+---------------------------------------
+Paragraph 52: 
+  Text: HMG-CoA Reductase Inhibitor
+---------------------------------------
+Paragraph 53: 
+  Text: Simvastatin 40mg Simvastatin 20mg
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 54: 
+  Text: Antilipemic Agent
+---------------------------------------
+Paragraph 55: 
+  Text: HMG-CoA Reductase Inhibitor
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 56: 
+  Text: Atorvastatin 20mg Atorvastatin 40mg
+---------------------------------------
+Paragraph 57: 
+  Text: Antilipemic Agent
+---------------------------------------
+Paragraph 58: 
+  Text: Fibric Acid
+---------------------------------------
+Paragraph 59: 
+  Text: Gemfibrozil 300mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 60: 
+  Text: Antilipemic Agent
+---------------------------------------
+Paragraph 61: 
+  Text: Fibric Acid
+---------------------------------------
+Paragraph 62: 
+  Text: Fenofibrate 145mg
+  Images: media/image6.png
+---------------------------------------
+Paragraph 63: 
+  Text: Antianginal Agent
+---------------------------------------
+Paragraph 64: 
+  Text: Nitrate
+---------------------------------------
+Paragraph 65: 
+  Text: Fatty Acid
+---------------------------------------
+Paragraph 66: 
+  Text: Oxidation Inhibitor
+---------------------------------------
+Paragraph 67: 
+  Images: media/image6.png, media/image6.png
+---------------------------------------
+Paragraph 68: 
+  Text: Isosorbide Dinitrate 10mg
+---------------------------------------
+Paragraph 69: 
+  Text: Trimetazidine 20mg
+---------------------------------------

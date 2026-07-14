@@ -1,0 +1,146 @@
+2026-07-07 22:57:39 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:09:02 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:10:28 | ::1 | fkkg | Menambah ubat baru: PERIN (8MG)
+2026-07-07 23:11:05 | ::1 | fkkg | Menambah ubat baru: PERINACE (8MG)
+2026-07-07 23:11:26 | ::1 | fkkg | Menambah ubat baru: PERINACE (8MG)
+2026-07-07 23:16:09 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:16:35 | ::1 | fkkg | Memadam ubat: PERIN
+2026-07-07 23:16:39 | ::1 | fkkg | Memadam ubat: PERINACE
+2026-07-07 23:16:44 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: PERINACE
+2026-07-07 23:17:11 | ::1 | fkkg | Memadam fail PDF dari storan
+2026-07-07 23:17:26 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:18:00 | ::1 | fkkg | Mengekstrak semua halaman PDF ke Desktop
+2026-07-07 23:19:23 | ::1 | fkkg | Mengekstrak semua halaman PDF ke Desktop
+2026-07-07 23:21:24 | ::1 | fkkg | Keluar dari sistem
+2026-07-07 23:21:31 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:21:46 | ::1 | fkkg | Mengekstrak semua halaman PDF ke Desktop
+2026-07-07 23:25:02 | ::1 | fkkg | Mengekstrak semua halaman PDF ke Desktop
+2026-07-07 23:26:22 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Perindopril + Indapamide
+2026-07-07 23:31:02 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:42:15 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:42:23 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Atenolol
+2026-07-07 23:42:44 | ::1 | fkkg | Memadam semua gambar foto custom bagi ubat: Atenolol
+2026-07-07 23:43:08 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Atenolol
+2026-07-07 23:43:29 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Labetalol
+2026-07-07 23:45:33 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:45:44 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Diabetmin XR
+2026-07-07 23:45:54 | ::1 | fkkg | Memadam semua gambar foto custom bagi ubat: Diabetmin XR
+2026-07-07 23:50:33 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:55:19 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:55:31 | ::1 | fkkg | Memadam fail PDF dari storan
+2026-07-07 23:55:45 | ::1 | fkkg | Memadam satu gambar visual bagi ubat: Atenolol
+2026-07-07 23:58:26 | ::1 | fkkg | Masuk ke sistem
+2026-07-07 23:58:36 | ::1 | fkkg | Memadam fail PDF dari storan
+2026-07-08 00:02:51 | ::1 | fkkg | Masuk ke sistem
+2026-07-13 05:41:23 | ::1 | fkkg | Masuk ke sistem
+2026-07-13 05:42:20 | ::1 | fkkg | Memadam fail PDF dari storan
+2026-07-13 05:42:30 | ::1 | fkkg | Memadam semua gambar foto custom bagi ubat: Labetalol
+2026-07-13 05:43:37 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Propranolol
+2026-07-13 05:44:19 | ::1 | fkkg | Memadam semua gambar foto custom bagi ubat: Propranolol
+2026-07-13 05:44:31 | ::1 | fkkg | Mengeset semula semua pemetaan ubat ke tetapan asal
+2026-07-13 05:44:44 | ::1 | fkkg | Mengeset semula semua pemetaan ubat ke tetapan asal
+2026-07-13 05:46:30 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Metoprolol
+2026-07-13 05:46:52 | ::1 | fkkg | Memadam semua gambar foto custom bagi ubat: Metoprolol
+2026-07-13 05:47:52 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Propranolol
+2026-07-13 05:48:16 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Galvus
+2026-07-13 05:49:26 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Bisocor
+2026-07-13 05:49:35 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Bisocor
+2026-07-13 05:49:51 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Atenolol
+2026-07-13 05:50:45 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Spironolactone
+2026-07-13 05:56:13 | ::1 | fkkg | Memuat naik/menyimpan fail PDF ke storan
+2026-07-13 05:56:43 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Prazosin
+2026-07-13 05:57:23 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Aspirin
+2026-07-13 05:57:53 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Simvastatin
+2026-07-13 05:58:09 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Valsartan
+2026-07-13 05:58:22 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Telmisartan
+2026-07-13 05:58:45 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Atorvastatin
+2026-07-13 05:59:05 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Atorvastatin
+2026-07-13 06:00:03 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Diabetmin XR
+2026-07-13 06:00:15 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Diamitex
+2026-07-13 06:00:37 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Frusemide
+2026-07-13 06:00:51 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Gemfibrozil
+2026-07-13 06:05:27 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Labetalol
+2026-07-13 06:05:52 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Fenofibrate
+2026-07-13 06:06:32 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Methyldopa
+2026-07-13 06:07:22 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Metoprolol
+2026-07-13 06:08:05 | ::1 | fkkg | Memuat naik gambar baru bagi ubat: Ubat Tambahan C
+2026-07-13 22:03:53 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 22:04:17 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Captopril
+2026-07-13 22:04:32 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Diltiazem
+2026-07-13 22:04:54 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Felodipine
+2026-07-13 22:05:02 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Felodipine
+2026-07-13 22:05:22 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Glucoxit
+2026-07-13 22:05:46 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Isosorbide Dinitrate
+2026-07-13 22:05:53 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Jardiance
+2026-07-13 22:06:09 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Remicron MR
+2026-07-13 22:06:21 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Ticlodipine
+2026-07-13 22:06:34 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Trimetazidine
+2026-07-13 22:07:54 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Enalapril
+2026-07-13 22:09:25 | 127.0.0.1 | fkkg | Memadam semua gambar foto custom bagi ubat: Enalapril
+2026-07-13 22:09:57 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Enalapril
+2026-07-13 22:11:52 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Perindopril
+2026-07-13 22:12:13 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Hydrochlorothiazide
+2026-07-13 22:12:22 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Prazosin
+2026-07-13 22:13:16 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Ubat Tambahan A
+2026-07-13 22:14:01 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Aspirin
+2026-07-13 22:14:43 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Galvus
+2026-07-13 22:14:55 | 127.0.0.1 | fkkg | Memadam semua gambar foto custom bagi ubat: Galvus
+2026-07-13 22:14:57 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Galvus
+2026-07-13 22:15:32 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Labetalol
+2026-07-13 22:20:09 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Atorvastatin
+2026-07-13 22:20:46 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Atorvastatin
+2026-07-13 22:26:08 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Wincardia
+2026-07-13 22:38:18 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-13 22:38:23 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 22:57:57 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-13 22:58:01 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 22:59:05 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-13 22:59:19 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 23:01:32 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-13 23:01:35 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 23:02:46 | 127.0.0.1 | fkkg | Mengemaskini ubat: PERINACE
+2026-07-13 23:05:10 | 127.0.0.1 | fkkg | Mengemaskini ubat: PERINACE
+2026-07-13 23:06:32 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-13 23:06:37 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-13 23:07:55 | 127.0.0.1 | fkkg | Memadam ubat: Simvastatin
+2026-07-13 23:09:09 | 127.0.0.1 | fkkg | Memadam ubat: Vitraq
+2026-07-13 23:47:11 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Enalapril
+2026-07-13 23:47:19 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Enalapril
+2026-07-13 23:48:05 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Encardil
+2026-07-13 23:48:21 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Hovasc
+2026-07-13 23:49:11 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Hovasc
+2026-07-13 23:49:34 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Hovasc
+2026-07-13 23:49:36 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Hovasc
+2026-07-13 23:49:50 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Nifedipine
+2026-07-13 23:50:06 | 127.0.0.1 | fkkg | Mengemaskini ubat: PERINACE
+2026-07-13 23:50:37 | 127.0.0.1 | fkkg | Memadam ubat: PERINACE
+2026-07-13 23:50:51 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Prazosin
+2026-07-13 23:51:28 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Zylovaa
+2026-07-13 23:51:42 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Zylovaa
+2026-07-13 23:52:01 | 127.0.0.1 | fkkg | Memadam satu gambar visual bagi ubat: Zylovaa
+2026-07-13 23:53:36 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Zylovaa
+2026-07-13 23:56:07 | 127.0.0.1 | fkkg | Menambah ubat baru: TRIPLIXAM (10)
+2026-07-13 23:56:29 | 127.0.0.1 | fkkg | Menambah ubat baru: MICARDIS PLUS (80MG)
+2026-07-13 23:57:14 | 127.0.0.1 | fkkg | Menambah ubat baru: EXFORGE 10/160 (AMLODIPINE 10/VALSARTAN 160MG)
+2026-07-14 00:01:06 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 00:01:19 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 00:04:10 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 00:04:14 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 00:04:32 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 00:10:12 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 00:10:46 | 127.0.0.1 | fkkg | Mengekstrak semua halaman PDF ke Desktop
+2026-07-14 00:11:49 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: Bisocor
+2026-07-14 00:11:56 | 127.0.0.1 | fkkg | Memadam satu gambar visual bagi ubat: Bisocor
+2026-07-14 00:12:35 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 00:18:22 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 00:18:45 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 00:24:39 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 00:24:42 | 127.0.0.1 | fkkg | Keluar dari sistem
+2026-07-14 21:28:24 | 127.0.0.1 | fkkg | Masuk ke sistem
+2026-07-14 21:29:46 | 127.0.0.1 | fkkg | Mengemaskini ubat: TRIPLIXAM 10/2.5/10
+2026-07-14 21:30:00 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: EXFORGE 10/160
+2026-07-14 21:30:07 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: EXFORGE 10/160
+2026-07-14 21:30:11 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: EXFORGE 10/160
+2026-07-14 21:30:20 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
+2026-07-14 21:30:28 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
+2026-07-14 21:30:37 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
