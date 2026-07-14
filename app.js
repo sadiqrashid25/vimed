@@ -83,6 +83,16 @@ try {
     console.error("Failed to load modified drugs:", e);
 }
 
+let deletedLocalImages = [];
+try {
+    const storedDeletedLocal = localStorage.getItem('deleted_local_images');
+    if (storedDeletedLocal) {
+        deletedLocalImages = JSON.parse(storedDeletedLocal);
+    }
+} catch (e) {
+    console.error("Failed to load deleted local images:", e);
+}
+
 let lastUpdatedTimes = {
     "1": "2026-07-14 00:00",
     "2": "2026-07-14 00:00",
@@ -626,7 +636,7 @@ function renderDrugGrid() {
         const page = mapping.page;
         const hasCustomImg = drugsWithCustomImages.has(drug.id);
         const hasPdfPage = pdfDoc && page && page > 0 && page <= pdfDoc.numPages;
-        const hasLocalImg = !!drug.localImage;
+        const hasLocalImg = !!drug.localImage && !deletedLocalImages.includes(drug.id);
         const isMapped = hasCustomImg || hasPdfPage || hasLocalImg;
         
         // Tab filter match
@@ -666,7 +676,7 @@ function renderDrugGrid() {
         const page = mapping.page;
         const hasCustomImg = drugsWithCustomImages.has(drug.id);
         const hasPdfPage = pdfDoc && page && page > 0 && page <= pdfDoc.numPages;
-        const hasLocalImg = !!drug.localImage;
+        const hasLocalImg = !!drug.localImage && !deletedLocalImages.includes(drug.id);
         const isMapped = hasCustomImg || hasPdfPage || hasLocalImg;
         
         const showControls = !!loggedInUser;
@@ -1374,7 +1384,22 @@ function setupEventListeners() {
     
     deleteImageBtn.addEventListener('click', () => {
         if (!activeDrug) return;
-        deleteCustomImage(activeDrug.id);
+        
+        const hasCustom = drugsWithCustomImages.has(activeDrug.id);
+        const hasLocal = !!activeDrug.localImage && !deletedLocalImages.includes(activeDrug.id);
+        
+        if (hasCustom) {
+            deleteCustomImage(activeDrug.id);
+        } else if (hasLocal) {
+            if (confirm("Adakah anda pasti mahu memadam/menyembunyikan gambar visual bagi ubat ini?")) {
+                deletedLocalImages.push(activeDrug.id);
+                localStorage.setItem('deleted_local_images', JSON.stringify(deletedLocalImages));
+                showToast("Gambar visual telah dipadam.", "success");
+                renderDrugGrid();
+                closeModal();
+                updateHeaderStats();
+            }
+        }
     });
 
     // --- Auth & Login Events ---
@@ -1851,8 +1876,11 @@ async function renderDrugContent() {
     const mapping = drugMappings[activeDrug.id] || { page: null, crop: 'all' };
     const pageVal = mapping.page;
     const isMapped = pdfDoc && pageVal && pageVal > 0 && pageVal <= pdfDoc.numPages;
-    const hasLocalImg = !!activeDrug.localImage;
+    const hasLocalImg = !!activeDrug.localImage && !deletedLocalImages.includes(activeDrug.id);
     const hasCustomImg = customImages.length > 0;
+    
+    // Toggle delete button display based on image availability
+    deleteImgBtn.style.display = (hasLocalImg || hasCustomImg) ? 'inline-flex' : 'none';
     
     if (!isMapped && !hasLocalImg && !hasCustomImg) {
         // Nothing to render, show empty state
@@ -1925,8 +1953,8 @@ async function renderDrugContent() {
     
     // 5. Render Custom Images
     if (hasCustomImg) {
-        // General Delete Image button will clear all custom images
-        deleteImgBtn.style.display = loggedInUser ? 'inline-flex' : 'none';
+        // Handled globally above
+        // deleteImgBtn.style.display = loggedInUser ? 'inline-flex' : 'none';
         
         customImages.forEach((imgSrc, index) => {
             const imgWrapper = document.createElement('div');
