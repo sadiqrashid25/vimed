@@ -10,3 +10,5 @@ extracted_images/
 
 # Ignore temporary installation scripts
 download_git.ps1
+push_to_github.bat
+

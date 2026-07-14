@@ -144,3 +144,4 @@
 2026-07-14 21:30:20 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
 2026-07-14 21:30:28 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
 2026-07-14 21:30:37 | 127.0.0.1 | fkkg | Memuat naik gambar baru bagi ubat: MICARDIS PLUS
+2026-07-14 21:54:16 | 127.0.0.1 | fkkg | Keluar dari sistem
