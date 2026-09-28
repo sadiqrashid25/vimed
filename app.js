@@ -211,7 +211,7 @@ const ADMIN_PASS = "123";
 let currentRenderTask = null;
 let activeDrug = null;
 let activePageNum = 1;
-let zoomScale = 1.8; // default crisp rendering scale
+let zoomScale = 2.5; // default high-definition crisp rendering scale
 let transformState = { x: 0, y: 0, scale: 1 };
 let isDragging = false;
 let startDragCoords = { x: 0, y: 0 };
@@ -221,6 +221,22 @@ const DB_NAME = 'DrugRefAppDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'pdfStore';
 const PDF_KEY = 'cataloguePdf';
+
+async function loadCardCustomImage(drugId) {
+    try {
+        const dataUrl = await getCustomImageData(drugId);
+        const imgEl = document.getElementById(`card_custom_img_${drugId}`);
+        const placeholderEl = document.getElementById(`card_placeholder_${drugId}`);
+        if (dataUrl && imgEl) {
+            const firstImg = Array.isArray(dataUrl) ? dataUrl[0] : dataUrl;
+            imgEl.src = firstImg;
+            imgEl.style.display = 'block';
+            if (placeholderEl) placeholderEl.style.display = 'none';
+        }
+    } catch (e) {
+        console.error("Failed to load card custom image:", e);
+    }
+}
 
 // --- Auth UI Management & Server Logging ---
 
@@ -703,13 +719,52 @@ function renderDrugGrid() {
             </div>
         ` : '';
 
+        let imageBoxHtml = '';
+        if (hasLocalImg) {
+            imageBoxHtml = `
+                <div class="card-image-box">
+                    <img src="${drug.localImage}" alt="${drug.name}" loading="lazy">
+                </div>
+            `;
+        } else if (hasCustomImg) {
+            imageBoxHtml = `
+                <div class="card-image-box">
+                    <img id="card_custom_img_${drug.id}" alt="${drug.name}" src="" style="display:none;">
+                    <div class="card-image-placeholder" id="card_placeholder_${drug.id}">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <span>Memuatkan foto...</span>
+                    </div>
+                </div>
+            `;
+        } else if (hasPdfPage) {
+            imageBoxHtml = `
+                <div class="card-image-box">
+                    <div class="card-image-placeholder">
+                        <i class="fa-solid fa-file-pdf" style="color: var(--primary); font-size: 36px; opacity: 0.85;"></i>
+                        <span style="font-weight: 600; color: var(--text-primary); margin-top: 4px;">PDF Halaman ${page}</span>
+                        <span style="font-size: 10px; color: var(--primary-light);">Klik untuk lihat visual skrin penuh</span>
+                    </div>
+                </div>
+            `;
+        } else {
+            imageBoxHtml = `
+                <div class="card-image-box">
+                    <div class="card-image-placeholder">
+                        <i class="fa-solid fa-image"></i>
+                        <span>Tiada Gambar Visual</span>
+                    </div>
+                </div>
+            `;
+        }
+
         card.innerHTML = `
             ${controlsHtml}
             <div class="card-top">
                 <span class="card-dosage">${drug.dosage}</span>
                 <h3 class="card-title">${drug.name}</h3>
-                <p class="card-generic" style="font-style: normal; font-weight: 600; color: var(--primary-light); margin-top: 4px;">Jenama: ${drug.brand}</p>
+                <p class="card-generic" style="font-style: normal; font-weight: 600; color: var(--primary-light); margin-top: 2px;">Jenama: ${drug.brand}</p>
             </div>
+            ${imageBoxHtml}
             <div class="card-bottom">
                 <span class="card-page">
                     <i class="fa-regular fa-file-image"></i> 
@@ -721,6 +776,10 @@ function renderDrugGrid() {
             </div>
             ${lastUpdatedHtml}
         `;
+        
+        if (hasCustomImg) {
+            setTimeout(() => loadCardCustomImage(drug.id), 0);
+        }
         
         if (showControls) {
             card.querySelector('.card-delete-btn').addEventListener('click', (e) => {
@@ -1077,7 +1136,7 @@ function renderMappingList() {
                            min="1" 
                            max="${pdfDoc ? pdfDoc.numPages : 999}" 
                            value="${currentPg}"
-                           placeholder="—"
+                           placeholder="â€”"
                            style="width: 50px;">
                 </div>
             </div>
@@ -2129,9 +2188,9 @@ function resetCanvasScale() {
     const container = document.getElementById('viewerContainer');
     const wrapper = document.getElementById('canvasWrapper');
     
-    // Measure bounding box of all items at target height of 480px
+    // Measure bounding box of all items using dynamic container height
     let totalWidth = 0;
-    let maxItemHeight = 480;
+    let maxItemHeight = Math.max(600, container.clientHeight - 40);
     
     const items = wrapper.querySelectorAll('.viewer-item-wrapper img, .viewer-item-wrapper canvas');
     if (items.length === 0) {
@@ -2144,27 +2203,26 @@ function resetCanvasScale() {
     items.forEach(item => {
         let naturalW = 0, naturalH = 1;
         if (item.tagName.toLowerCase() === 'img') {
-            naturalW = item.naturalWidth || 400;
-            naturalH = item.naturalHeight || 400;
+            naturalW = item.naturalWidth || 600;
+            naturalH = item.naturalHeight || 600;
         } else {
-            naturalW = item.width || 400;
-            naturalH = item.height || 400;
+            naturalW = item.width || 600;
+            naturalH = item.height || 600;
         }
-        // Scaled width based on fixed height of 480px
-        const w = naturalW * (480 / naturalH);
+        const w = naturalW * (maxItemHeight / naturalH);
         totalWidth += w;
     });
     
     // Add gap space in total width (e.g. 20px gap per item)
     totalWidth += 20 * (items.length - 1);
     
-    // Base scale to fit container completely (leave some padding)
-    const padding = 40;
+    // Base scale to fit container completely
+    const padding = 20;
     const scaleX = (container.clientWidth - padding) / totalWidth;
     const scaleY = (container.clientHeight - padding) / maxItemHeight;
-    const baseScale = Math.min(scaleX, scaleY, 1.2); // cap scale at 1.2 so single images aren't too large
+    const baseScale = Math.min(scaleX, scaleY, 1.8);
     
-    transformState = { x: 0, y: 0, scale: baseScale };
+    transformState = { x: 0, y: 0, scale: Math.max(0.9, baseScale) };
     applyTransform();
     updateZoomLabel();
 }
